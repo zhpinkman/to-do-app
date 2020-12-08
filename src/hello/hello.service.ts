@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PersonDto } from './DTO/person.dto';
 
 @Injectable()
-export class PostService {
+export class HelloService {
     async welcome(person: PersonDto): Promise<string> {
         // check if the user exists in the db
         let msg: string;

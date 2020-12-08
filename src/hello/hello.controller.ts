@@ -1,13 +1,12 @@
 import { Body, Controller, Get, Header, Post, Query } from '@nestjs/common';
 import { ApiQuery } from '@nestjs/swagger/dist/decorators/api-query.decorator';
 import { ApiResponse } from '@nestjs/swagger/dist/decorators/api-response.decorator';
-import { CLIEngine } from 'eslint';
 import { PersonDto } from './DTO/person.dto';
-import { PostService } from './post.service';
+import { HelloService } from './hello.service';
 
-@Controller('post')
-export class PostController {
-    constructor(private postService: PostService) {}
+@Controller('hello')
+export class HelloController {
+    constructor(private HelloService: HelloService) {}
 
 
     @Post('welcome')
@@ -15,9 +14,8 @@ export class PostController {
     @Header('Content-Type', 'application/json')
     async sayWelcome(@Body() personDto: PersonDto): Promise<{data: string}> {
         console.log(personDto)
-        let msg = await this.postService.welcome(personDto);
+        let msg = await this.HelloService.welcome(personDto);
         return {data: msg};
-  
     }
 
     @ApiResponse({ status: 200})
@@ -36,15 +34,8 @@ export class PostController {
     @Get('welcome')
     async sayWelcomeGet(@Query('name') name, @Query('year') year): Promise<{data: string}> {
         console.log(name, year)
-        let msg = await this.postService.welcome({name: name, year: year})
+        let msg = await this.HelloService.welcome({name: name, year: year})
         return {data: msg}
     }
 
-
-
-    @Post()
-    createMessage(@Body() message: PersonDto){
-        console.log(message);
-        return message;
-    }
 }
