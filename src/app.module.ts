@@ -3,12 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HelloModule } from './hello/hello.module';
 import { UserModule } from './user/user.module';
-import UserEntity from './db/user.entity';
-import BookEntity from './db/book.entity';
-import GenreEntity from './db/genre.entity';
+import UserEntity from './db/entity/user.entity';
 import BooksModule from './books/books.module';
 import GenreModule from './genre/genre.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import BookEntity from './db/entity/book.entity';
+import GenreEntity from './db/entity/genre.entity';
 ;
 
 @Module({

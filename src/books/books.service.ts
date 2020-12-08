@@ -1,6 +1,6 @@
-import BookEntity from 'src/db/book.entity';
-import GenreEntity from 'src/db/genre.entity';
-import UserEntity from 'src/db/user.entity';
+import BookEntity from 'src/db/entity/book.entity';
+import GenreEntity from 'src/db/entity/genre.entity';
+import UserEntity from 'src/db/entity/user.entity';
 import CreateBookDto from 'src/user/dto/create-book.dto';
 import { createQueryBuilder, getConnection } from 'typeorm';
 
