@@ -1,9 +1,14 @@
 {
-    "type": "sqlite",
-    "database": "./database.sqlite",
+    "type": "postgres",
+    "host": "localhost", 
+    "port": 5432,
+    "username": "zhivar",
+    "password": "Pinkyzhman",
+    "database": "todo",
     "synchronize": "true",
     "entities": [
-      "dist/db/entity/**/*.js"
+      "dist/db/entity/**/*.js",
+      "dist/**/**.entity{.ts, .js}"
     ],
     "cli": {
       "entitiesDir": "src/db/entity"
