@@ -8,6 +8,9 @@ export class UserServices {
 
 
   async findOne(username: string): Promise<UserEntity | undefined> {
+    console.log("user service")
+    console.log(username);    
+    
     return UserEntity.findOne({
       where: {name: username}
     })
