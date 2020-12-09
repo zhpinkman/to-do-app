@@ -12,5 +12,10 @@ export default class CreateUserDto {
       maxLength: 500
     })
     readonly books: number[] ;
+
+    @ApiProperty({
+      description: 'user password'
+    })
+    readonly password: string;
   }
   
