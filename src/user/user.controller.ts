@@ -1,6 +1,7 @@
 import { Body, Controller, Get, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { ApiBody } from '@nestjs/swagger/dist';
 import { ApiResponse } from '@nestjs/swagger/dist/decorators/api-response.decorator';
+import { Public } from 'src/auth/constants';
 import CreateUserDto from './dto/create-user.dto';
 import { UserServices } from './user.service';
 
@@ -13,6 +14,7 @@ export class UserController {
     status: 201, 
     description: 'returns the created user'
   })
+  @Public()
   @Post('post')
   postUser( @Body() user: CreateUserDto) {
     return this.usersServices.insert(user);

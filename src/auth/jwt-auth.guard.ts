@@ -27,14 +27,6 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
         console.log(user);
         console.log(info);
         
-        if (!user && info.message != NO_AUTH_TOKEN) {
-            console.log(info.message);
-            console.log('returning message');
-            return {
-                "message": info.message
-            }
-        }
-        
         if (err || !user) {
             console.log('returning error or unauthorized');
             throw err || new UnauthorizedException();
