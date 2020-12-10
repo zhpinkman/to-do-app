@@ -1,7 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, ManyToMany, JoinTable, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, ManyToMany } from 'typeorm';
 import UserEntity from './user.entity';
 import { Optional } from '@nestjs/common';
-import SubTaskEntity from './subTask.entity';
 import CategoryEntity from './category.entity';
 import LabelEntity from './label.entity';
 
@@ -14,11 +13,11 @@ export default class TaskEntity extends BaseEntity
     @Column({ length: 500 })
     name: string;
 
-    @ManyToOne(type => CategoryEntity, category => category.task)
+    @ManyToOne(() => CategoryEntity, category => category.task)
     category: CategoryEntity;
 
     @Optional()
-    @ManyToMany(type => LabelEntity, label => label.tasks)
+    @ManyToMany(() => LabelEntity, label => label.tasks)
     labels: LabelEntity[];
 
 
@@ -26,11 +25,11 @@ export default class TaskEntity extends BaseEntity
     @Column({ length: 500 })
     description: string;
 
-    @ManyToOne(type => UserEntity, user => user.tasks)
+    @ManyToOne(() => UserEntity, user => user.tasks)
     user: UserEntity;
 
     @Optional()
-    @OneToMany(type => SubTaskEntity, subTask => subTask.parent)
-    subTasks: SubTaskEntity[];
+    @Column({ length: 1000 })
+    subTasks: string;
 
 }
