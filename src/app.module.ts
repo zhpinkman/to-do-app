@@ -13,11 +13,11 @@ import GenreEntity from './db/entity/genre.entity';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { TaskService } from './task/task.service';
-import { CategoryService } from './category/category.service';
-import { LabelService } from './label/label.service';
 import { TaskModule } from './task/task.module';
 import { CategoryModule } from './category/category.module';
 import { LabelModule } from './label/label.module';
+import CategoryService from './category/category.service';
+import LabelService from './label/label.service';
 ;
 
 @Module({

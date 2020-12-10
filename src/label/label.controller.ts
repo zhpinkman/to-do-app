@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger/dist/decorators';
 import CreateLabelDto from 'src/todo/dto/create-label.dto';
-import { LabelService } from './label.service';
+import LabelService from './label.service';
 
 @Controller('label')
 export default class labelController {
