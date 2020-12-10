@@ -10,7 +10,4 @@ export default class LabelEntity extends BaseEntity
     @Column({ length: 500 })
     name: string;
 
-    @ManyToMany(() => TaskEntity, task => task.labels)
-    tasks: TaskEntity[];
-
 }

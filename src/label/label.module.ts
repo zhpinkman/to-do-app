@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { LabelController } from './label.controller';
 
-@Module({})
+@Module({
+  controllers: [LabelController]
+})
 export class LabelModule {}

@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, ManyToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 import UserEntity from './user.entity';
 import { Optional } from '@nestjs/common';
 import CategoryEntity from './category.entity';
@@ -17,7 +17,8 @@ export default class TaskEntity extends BaseEntity
     category: CategoryEntity;
 
     @Optional()
-    @ManyToMany(() => LabelEntity, label => label.tasks)
+    @ManyToMany(() => LabelEntity)
+    @JoinTable()
     labels: LabelEntity[];
 
 
