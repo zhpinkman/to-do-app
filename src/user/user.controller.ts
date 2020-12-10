@@ -31,24 +31,24 @@ export class UserController {
 
 //'getBooks()' return all the books which are associated with the user 
 // provided through 'userID' by the request  
-  @ApiResponse({
-    status: 200, 
-    description: 'getBooks() return all the books which are associated with the user \
-      provided through \'userID\' by the request', 
-  })
-  @ApiBody({
-    description: 'user id associated with wanted books', 
-    schema: {
-      type: 'object', 
-      properties: {
-        "userID" : {
-          type: 'string'
-        }
-      }
-    }
-  })
-  @Get('books')
-  getBooks( @Body('userID', ParseIntPipe) userID: number ) {
-    return this.usersServices.getBooksOfUser(userID);
-  }
+  // @ApiResponse({
+  //   status: 200, 
+  //   description: 'getBooks() return all the books which are associated with the user \
+  //     provided through \'userID\' by the request', 
+  // })
+  // @ApiBody({
+  //   description: 'user id associated with wanted books', 
+  //   schema: {
+  //     type: 'object', 
+  //     properties: {
+  //       "userID" : {
+  //         type: 'string'
+  //       }
+  //     }
+  //   }
+  // })
+  // @Get('books')
+  // getBooks( @Body('userID', ParseIntPipe) userID: number ) {
+  //   return this.usersServices.getBooksOfUser(userID);
+  // }
 }

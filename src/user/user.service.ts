@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import BookEntity from 'src/db/entity/book.entity';
 import UserEntity from 'src/db/entity/user.entity';
 import CreateUserDto from './dto/create-user.dto';
 
@@ -27,9 +26,9 @@ export class UserServices {
   async getAllUsers(): Promise<UserEntity[]> {
     return await UserEntity.find();
   }
-  async getBooksOfUser(userID: number): Promise<BookEntity[]> {
-    console.log(typeof(userID));
-    const user: UserEntity = await UserEntity.findOne({where: {id: userID}, relations: ['books']});
-    return user.books;
-  }
+  // async getBooksOfUser(userID: number): Promise<BookEntity[]> {
+  //   console.log(typeof(userID));
+  //   const user: UserEntity = await UserEntity.findOne({where: {id: userID}, relations: ['books']});
+  //   return user.books;
+  // }
 }      
