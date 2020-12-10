@@ -10,6 +10,7 @@ export default class CategoryService {
     const {name} = categoryDetails;
 
     categoryEntity.name = name;
+    categoryEntity.tasks = [];
     await CategoryEntity.save(categoryEntity);
     return categoryEntity;
   }

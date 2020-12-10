@@ -11,6 +11,6 @@ export default class CategoryEntity extends BaseEntity
     name: string;
 
     @OneToMany(() => TaskEntity, task => task.category)
-    task: TaskEntity[];
+    tasks: TaskEntity[];
 
 }

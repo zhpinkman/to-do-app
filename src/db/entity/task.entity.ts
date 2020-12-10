@@ -13,11 +13,15 @@ export default class TaskEntity extends BaseEntity
     @Column({ length: 500 })
     name: string;
 
-    @ManyToOne(() => CategoryEntity, category => category.task)
+    @ManyToOne(() => CategoryEntity, category => category.tasks, {
+        eager: true
+    })
     category: CategoryEntity;
 
     @Optional()
-    @ManyToMany(() => LabelEntity)
+    @ManyToMany(() => LabelEntity, {
+        eager: true
+    })
     @JoinTable()
     labels: LabelEntity[];
 

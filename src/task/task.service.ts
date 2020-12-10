@@ -17,9 +17,10 @@ export class TaskService {
     task.description = description || '';
     for ( let i = 0; i < labels.length ; i++)
     {
-             const label = await LabelEntity.findOne(labels[i]);
-             task.labels.push(label);
+        const label = await LabelEntity.findOne(labels[i]);
+        task.labels.push(label);
     }
+    task.category.save();
     await task.save();
     return task;
   }
@@ -34,7 +35,7 @@ export class TaskService {
 
   async update(TaskID: number, taskDetails: CreateTaskDto): Promise<TaskEntity> {
     const {name, description, userID, subTasks, category, labels} = taskDetails;
-    const task = new TaskEntity();
+    const task = await TaskEntity.findOne(TaskID);
     task.name = name;
     task.user = await UserEntity.findOne(userID);
     task.labels = [];
@@ -43,9 +44,10 @@ export class TaskService {
     task.description = description || '';
     for ( let i = 0; i < labels.length ; i++)
     {
-             const label = await LabelEntity.findOne(labels[i]);
-             task.labels.push(label);
+        const label = await LabelEntity.findOne(labels[i]);
+        task.labels.push(label);
     }
+    task.category.save();
     await task.save();
     return task;
   }

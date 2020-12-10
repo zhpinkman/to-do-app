@@ -13,7 +13,7 @@ export default class TaskController {
     description: 'returns the created task'
   })
   @Post('post')
-  insertTask( @Body() task: CreateTaskDto) {
+  insertTask(@Body() task: CreateTaskDto) {
     return this.taskService.insert(task);
   }
 
