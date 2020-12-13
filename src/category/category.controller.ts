@@ -18,7 +18,7 @@ export default class CategoryController {
 
   @ApiResponse({
     status: 200, 
-    description: 'returns all the categorys'
+    description: 'returns all the categories'
   })
   @Get()
   getAll() {

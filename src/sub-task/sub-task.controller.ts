@@ -12,7 +12,7 @@ export default class SubTaskController {
 
   @ApiResponse({
     status: 201, 
-    description: 'returns the created task'
+    description: 'returns the created subTask'
   })
   @Post('post')
   insertTask(@Body() task: CreateSubTaskDto) {
@@ -21,7 +21,7 @@ export default class SubTaskController {
 
   @ApiResponse({
     status: 200, 
-    description: 'returns all the tasks'
+    description: 'returns all the subTasks'
   })
   @Get()
   getAlltasks() {
@@ -31,13 +31,12 @@ export default class SubTaskController {
 
   @ApiResponse({
     status: 200, 
-    description: 'removes the task with provided task ID and returns the task name'
+    description: 'removes the subTask with provided subTaskID and returns the removed subTask'
   })
   @ApiQuery({
-    name: 'taskID', 
+    name: 'subTaskID', 
     required: true,
     type: Number, 
-    description: 'id of the task you want to remove'
   })
   @Delete('delete')
   deletetask(@Query('subTaskID') subTaskID): Promise<SubTaskEntity> {
@@ -46,13 +45,12 @@ export default class SubTaskController {
 
   @ApiResponse({
     status: 200,
-    description: 'updates the task given its task id and the task object that has to be replaced'
+    description: 'updates the subtask given its subtaskID and the subTask object that has to be replaced'
   })
   @ApiQuery({
-    name: 'taskID', 
+    name: 'subTaskID', 
     required: true,
     type: Number, 
-    description: 'id of the task you want to update'
   })
   @Put('update')
   updatetask(@Query('subTaskID') subTaskID, @Body() subTask: CreateSubTaskDto): Promise<SubTaskEntity> {

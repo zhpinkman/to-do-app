@@ -29,13 +29,12 @@ export default class TaskController {
 
   @ApiResponse({
     status: 200, 
-    description: 'removes the task with provided task ID and returns the task name'
+    description: 'removes the task with provided task ID and returns the removed task'
   })
   @ApiQuery({
     name: 'taskID', 
     required: true,
-    type: Number, 
-    description: 'id of the task you want to remove'
+    type: Number
   })
   @Delete('delete')
   deletetask(@Query('taskID') taskID): Promise<taskEntity> {
@@ -49,8 +48,7 @@ export default class TaskController {
   @ApiQuery({
     name: 'taskID', 
     required: true,
-    type: Number, 
-    description: 'id of the task you want to update'
+    type: Number
   })
   @Put('update')
   updatetask(@Query('taskID') taskID, @Body() task: CreateTaskDto): Promise<taskEntity> {

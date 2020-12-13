@@ -22,7 +22,7 @@ export class UserController {
 // 'getAll()' returns the list of all the existing users in the database
   @ApiResponse({
     status: 200, 
-    description: 'returns all the books'
+    description: 'returns all the users'
   })
   @Get()
   getAll() {

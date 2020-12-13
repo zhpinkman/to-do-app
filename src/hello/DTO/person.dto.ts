@@ -8,7 +8,7 @@ export class PersonDto {
         description: 'Enter your name -> ',
         minLength: 3,
         maxLength: 10,
-        default: 'Ali',
+        example: 'Ali',
     })
     name: string;
 

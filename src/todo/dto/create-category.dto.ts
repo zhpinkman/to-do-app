@@ -8,7 +8,9 @@ export class CreateCategoryDto {
     @IsString()
     @ApiProperty({
         description: 'name of the category', 
-        maxLength: 500
+        maxLength: 500, 
+        example: 'high priority', 
+        type: String
     })
     readonly name: string
 
