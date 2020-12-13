@@ -13,6 +13,7 @@ import { TaskService } from './task/task.service';
 import { TaskModule } from './task/task.module';
 import { CategoryModule } from './category/category.module';
 import { LabelModule } from './label/label.module';
+import { SubTaskModule } from './sub-task/sub-task.module';
 import CategoryService from './category/category.service';
 import LabelService from './label/label.service';
 ;
@@ -23,7 +24,7 @@ import LabelService from './label/label.service';
     [
       UserEntity , GenreEntity
     ],
-  ),TypeOrmModule.forRoot(), AuthModule, TaskModule, CategoryModule, LabelModule,],
+  ),TypeOrmModule.forRoot(), AuthModule, TaskModule, CategoryModule, LabelModule, SubTaskModule,],
   controllers: [AppController],
   providers: [
     AppService, 
