@@ -39,13 +39,12 @@ export class TaskService {
     return Task.remove();
   }
 
-  async update(TaskID: number, taskDetails: CreateTaskDto): Promise<TaskEntity> {
+  async update(taskID: number, taskDetails: CreateTaskDto): Promise<TaskEntity> {
     const {name, description, userID, subTasks, category, labels} = taskDetails;
-    const task = new TaskEntity();
+    const task = await TaskEntity.findOne(taskID)
     task.name = name;
     task.user = await UserEntity.findOne(userID);
     task.labels = [];
-    task.subTasks = [];
     task.category = await CategoryEntity.findOne(category);
     task.description = description || '';
     for ( let i = 0; i < labels.length ; i++)
@@ -53,16 +52,22 @@ export class TaskService {
         const label = await LabelEntity.findOne(labels[i]);
         task.labels.push(label);
     }
+    await task.save();
+    const prevSubTasks = await SubTaskEntity.find({
+      where : {
+        task: task
+      }
+    })
+    prevSubTasks.forEach(prevSubTask => {
+      prevSubTask.remove()
+    });
     for ( let i = 0; i < subTasks.length ; i++)
     {
         const subTask = new SubTaskEntity();
         subTask.task = task;
         subTask.description = subTasks[i];
-        task.subTasks.push(subTask);
         await subTask.save();
     }
-    await task.category.save();
-    await task.save();
     return task;
   }
 }
