@@ -1,5 +1,6 @@
 import CategoryEntity from 'src/db/entity/category.entity';
 import LabelEntity from 'src/db/entity/label.entity';
+import SubTaskEntity from 'src/db/entity/subTask.entity';
 import TaskEntity from 'src/db/entity/task.entity';
 import UserEntity from 'src/db/entity/user.entity';
 import CreateTaskDto from 'src/todo/dto/create-task.dto';
@@ -12,7 +13,6 @@ export class TaskService {
     task.name = name;
     task.user = await UserEntity.findOne(userID);
     task.labels = [];
-    task.subTasks = subTasks || '';
     task.category = await CategoryEntity.findOne(category);
     task.description = description || '';
     for ( let i = 0; i < labels.length ; i++)
@@ -20,8 +20,14 @@ export class TaskService {
         const label = await LabelEntity.findOne(labels[i]);
         task.labels.push(label);
     }
-    task.category.save();
     await task.save();
+    for ( let i = 0; i < subTasks.length ; i++)
+    {
+        const subTask = new SubTaskEntity();
+        subTask.task = task;
+        subTask.description = subTasks[i];
+        await subTask.save();
+    }
     return task;
   }
   async getAllTasks(): Promise<TaskEntity[] > {
@@ -35,11 +41,11 @@ export class TaskService {
 
   async update(TaskID: number, taskDetails: CreateTaskDto): Promise<TaskEntity> {
     const {name, description, userID, subTasks, category, labels} = taskDetails;
-    const task = await TaskEntity.findOne(TaskID);
+    const task = new TaskEntity();
     task.name = name;
     task.user = await UserEntity.findOne(userID);
     task.labels = [];
-    task.subTasks = subTasks || '';
+    task.subTasks = [];
     task.category = await CategoryEntity.findOne(category);
     task.description = description || '';
     for ( let i = 0; i < labels.length ; i++)
@@ -47,7 +53,15 @@ export class TaskService {
         const label = await LabelEntity.findOne(labels[i]);
         task.labels.push(label);
     }
-    task.category.save();
+    for ( let i = 0; i < subTasks.length ; i++)
+    {
+        const subTask = new SubTaskEntity();
+        subTask.task = task;
+        subTask.description = subTasks[i];
+        task.subTasks.push(subTask);
+        await subTask.save();
+    }
+    await task.category.save();
     await task.save();
     return task;
   }

@@ -1,8 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 import UserEntity from './user.entity';
 import { Optional } from '@nestjs/common';
 import CategoryEntity from './category.entity';
 import LabelEntity from './label.entity';
+import SubTaskEntity from './subTask.entity';
 
 @Entity()
 export default class TaskEntity extends BaseEntity 
@@ -30,11 +31,14 @@ export default class TaskEntity extends BaseEntity
     @Column({ length: 500 })
     description: string;
 
-    @ManyToOne(() => UserEntity, user => user.tasks)
+    @ManyToOne(() => UserEntity, user => user.tasks, {
+        onDelete: 'CASCADE'
+    })
     user: UserEntity;
 
-    @Optional()
-    @Column({ length: 1000 })
-    subTasks: string;
+    @OneToMany(() => SubTaskEntity, subTask => subTask.task, {
+        eager: true
+    })
+    subTasks: SubTaskEntity[];
 
 }

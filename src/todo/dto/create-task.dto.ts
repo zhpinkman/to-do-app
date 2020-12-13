@@ -24,7 +24,7 @@ export default class CreateTaskDto {
 
     @Optional()
     @ApiProperty({})
-    readonly subTasks: string;
+    readonly subTasks: string[];
 
 
     @ApiProperty({
