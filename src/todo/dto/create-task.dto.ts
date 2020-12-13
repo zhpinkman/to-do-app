@@ -1,39 +1,49 @@
 import { Optional } from "@nestjs/common";
-import { ApiProperty } from "@nestjs/swagger/dist/decorators/api-property.decorator";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger/dist/decorators/api-property.decorator";
+import { IsArray, isNumber, IsNumber, IsOptional, Length } from "class-validator";
 
 export default class CreateTaskDto {
 
     @ApiProperty({
-    //   description: 'book\'s names',
-    //   maxLength: 500, 
+      description: 'name of the task',
+      maxLength: 500
     })
     readonly name: string;
 
 
     @Optional()
-    @ApiProperty({
-    //   description: 'book\'s names',
-    //   maxLength: 500, 
+    @ApiPropertyOptional({
+      description: 'the description of the task',
+      maxLength: 500, 
     })
     readonly description: string;
 
+    @IsNumber()
     @ApiProperty({
-    //   description: 'associated user id'
+      description: 'associated user id'
     })
     readonly userID: number;
 
+    @IsArray()
     @Optional()
-    @ApiProperty({})
+    @ApiPropertyOptional({
+      description: 'array of the subtasks\' descriptions' 
+    })
     readonly subTasks: string[];
 
 
+    @IsNumber()
     @ApiProperty({
-    //   description: 'associated genre ids',
-    //   default: '[]'
+      description: 'ID of the category task belongs to',
     })
     readonly category: number;
 
+    @IsOptional()
+    @IsArray({})
     @Optional()
-    @ApiProperty({})
+    @ApiPropertyOptional({
+      description: 'labels associated with the task', 
+      type: Array(Number)
+    })
     readonly labels: number[];
   }

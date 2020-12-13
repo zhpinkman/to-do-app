@@ -1,3 +1,4 @@
+import { isString, min, minLength } from 'class-validator';
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from 'typeorm';
 import TaskEntity from './task.entity';
 @Entity()

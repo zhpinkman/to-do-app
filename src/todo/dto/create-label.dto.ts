@@ -3,7 +3,8 @@ import { ApiProperty } from "@nestjs/swagger/dist/decorators/api-property.decora
 export default class CreateLabelDto {
 
     @ApiProperty({
-      description: 'label name (type)'    
+      description: 'name of the label',
+      maxLength: 500
     })
     readonly type: string;
   }
